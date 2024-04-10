@@ -45,7 +45,7 @@ lemmatizer = WordNetLemmatizer()
 
 
 df = pd.read_csv("/workspaces/COMP710-001-Project-Cyberbullying-detection-System-with-front-end-integration/Dataset/twitter_parsed_dataset.csv")
-print(df.head())
+#print(df.head())
 #print(df.isnull().sum())
 # Handle NaN values
 df.dropna(inplace=True)  # Drop rows with NaN values
@@ -58,14 +58,14 @@ df.dropna(inplace=True)  # Drop rows with NaN values
 #df['labels'].fillna("No hate or offensive speech", inplace=True)
 # Drop rows with NaN values in the 'labels' column
 #df.dropna(subset=['labels'], inplace=True)
-print(df.head())
+#print(df.head())
 
 
 # In[7]:
 
 
 df = df[['Text', 'Annotation']]
-print(df.head())
+#print(df.head())
 
 
 # In[8]:
@@ -118,7 +118,7 @@ def clean(text):
     return ' '.join(tokens)
 
 df["Text"] = df["Text"].apply(clean)
-print(df.head())
+#print(df.head())
 
 
 # In[9]:
@@ -162,21 +162,21 @@ y_pred = clf.predict(X_test_tfidf)
 #Evaluate the performance of the classifier
 accuracy = accuracy_score(y_test, y_pred)
 
-print("Accuracy: ", accuracy*100)
+#print("Accuracy: ", accuracy*100)
 
 
 # In[12]:
 
 
-print("Classification Report:")
-print(classification_report(y_test, y_pred))
+#print("Classification Report:")
+#print(classification_report(y_test, y_pred))
 
 
 # In[13]:
 
 
-print("Confusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
+#print("Confusion Matrix:")
+#print(confusion_matrix(y_test, y_pred))
 
 
 # In[14]:
