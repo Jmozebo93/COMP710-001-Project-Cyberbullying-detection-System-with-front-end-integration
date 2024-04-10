@@ -185,16 +185,16 @@ accuracy = accuracy_score(y_test, y_pred)
 # In[14]:
 
 
-#test_data = "I'm not sexist but women should not be working"
+test_data = "I'm not sexist but women should not be working"
 
 # Apply the same preprocessing steps to the test data
-#clean_test_data = clean(test_data)
+clean_test_data = clean(test_data)
 
 # Transform the preprocessed test data using the same vectorizer used for training data
-#test_data_vectorized = vectorizer.transform([clean_test_data]).toarray()
+test_data_vectorized = vectorizer.transform([clean_test_data]).toarray()
 
 # Make predictions on the test data
-#predicted_label = clf.predict(test_data_vectorized)
+predicted_label = clf.predict(test_data_vectorized)
 
 
 
@@ -204,8 +204,8 @@ accuracy = accuracy_score(y_test, y_pred)
 
 
 # Check if the predicted label is "racism" or "sexism"
-#if predicted_label in ["racism", "sexism"]:
-    #print("Cyberbullying")
-#else:
-    #print(predicted_label)
+if predicted_label in ["racism", "sexism"]:
+    print("Cyberbullying")
+else:
+    print(predicted_label)
 
