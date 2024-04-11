@@ -94,14 +94,33 @@
       
       // Show loading animation
       loading.style.display = 'block';
-    
-      setTimeout(function() {
-        // Here implement cyberbullying analysis algorithm
-        var isCyberbullying = Math.random() < 0.5; 
-        resultDiv.innerHTML = isCyberbullying ? '<p>This tweet contains cyberbullying.</p>' : '<p>This tweet does not contain cyberbullying.</p>';
-        
+
+      // Make HTTP request to backend
+      fetch('/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ tweet: tweet }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Display analysis result
+        resultDiv.innerHTML = `<p>${data.result}</p>`;
         loading.style.display = 'none';
-      }, 1500); 
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        loading.style.display = 'none';
+      });
+    
+      //setTimeout(function() {
+        // Here implement cyberbullying analysis algorithm
+        //var isCyberbullying = Math.random() < 0.5; 
+        //resultDiv.innerHTML = isCyberbullying ? '<p>This tweet contains cyberbullying.</p>' : '<p>This tweet does not contain cyberbullying.</p>';
+        
+        //loading.style.display = 'none';
+      //}, 1500); 
     }
   </script>
 </body>
