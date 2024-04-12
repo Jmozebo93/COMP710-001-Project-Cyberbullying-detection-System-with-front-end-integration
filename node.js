@@ -1,20 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { spawn } = require('child_process');
-const path = require('path'); // Import the path module
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
-
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname))); // Update the path to serve static files
 
 app.use(bodyParser.json());
 
 app.post('/analyze', (req, res) => {
   const { tweet } = req.body;
 
-  const pythonProcess = spawn('python', ['/workspaces/COMP710-001-Project-Cyberbullying-detection-System-with-front-end-integration/Model/Cyberbullying_Detection_System.py', tweet]);
+  const pythonProcess = spawn('python', [
+    '/workspaces/COMP710-001-Project-Cyberbullying-detection-System-with-front-end-integration/Model/Cyberbullying_Detection_System.py',
+    tweet
+  ]);
 
   let result = '';
 
@@ -24,7 +24,14 @@ app.post('/analyze', (req, res) => {
 
   pythonProcess.on('exit', code => {
     if (code === 0) {
-      res.json({ result: result.trim() });
+      const prediction = result.trim();
+      console.log('Prediction:', prediction);  // Log the content of prediction
+      if (prediction === 'Cyberbullying') {
+        res.json({ result: 'Your comment was flagged as inappropriate.' });
+      } else {
+        // code to post the comment
+        res.json({ result: 'Your comment was posted successfully.' });
+      }
     } else {
       res.status(500).json({ error: 'Python script failed' });
     }
@@ -36,9 +43,8 @@ app.post('/analyze', (req, res) => {
   });
 });
 
-// Define a route handler for the root URL ("/") to serve the User_Interface.html file
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname,'User_Interface.html'));
+  res.sendFile(path.join(__dirname, 'User_Interface.html'));
 });
 
 app.listen(PORT, () => {
