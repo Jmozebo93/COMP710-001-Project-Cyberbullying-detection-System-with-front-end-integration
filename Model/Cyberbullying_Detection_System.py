@@ -3,7 +3,7 @@
 
 # In[2]:
 
-
+import sys
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -185,16 +185,16 @@ accuracy = accuracy_score(y_test, y_pred)
 # In[14]:
 
 
-test_data = "I'm not sexist but women should not be working"
+#test_data = "I'm not sexist but women should not be working"
 
 # Apply the same preprocessing steps to the test data
-clean_test_data = clean(test_data)
+#clean_test_data = clean(test_data)
 
 # Transform the preprocessed test data using the same vectorizer used for training data
-test_data_vectorized = vectorizer.transform([clean_test_data]).toarray()
+#test_data_vectorized = vectorizer.transform([clean_test_data]).toarray()
 
 # Make predictions on the test data
-predicted_label = clf.predict(test_data_vectorized)
+#predicted_label = clf.predict(test_data_vectorized)
 
 
 
@@ -204,8 +204,35 @@ predicted_label = clf.predict(test_data_vectorized)
 
 
 # Check if the predicted label is "racism" or "sexism"
-if predicted_label in ["racism", "sexism"]:
-    print("Cyberbullying")
-else:
-    print(predicted_label)
+#if predicted_label in ["racism", "sexism"]:
+    #print("Cyberbullying")
+#else:
+    #print(predicted_label)
 
+# Import necessary libraries
+
+def predict_cyberbullying(sentence):
+    # Preprocess the input sentence (cleaning, tokenization, etc.)
+    clean_test_data = clean(sentence)
+
+    # Transform the preprocessed test data using the same vectorizer used for training data
+    test_data_vectorized = vectorizer.transform([clean_test_data]).toarray()
+
+    # Make predictions on the test data
+    predicted_label = clf.predict(test_data_vectorized)
+
+    # Check if the predicted label is "racism" or "sexism"
+    if predicted_label in ["racism", "sexism"]:
+        return "Cyberbullying"
+    else:
+        return predicted_label
+    
+if __name__ == "__main__":
+    # Get the user's comment from command-line arguments
+    user_comment = sys.argv[1]
+
+    # Use the comment to make a prediction
+    prediction = predict_cyberbullying(user_comment)
+
+    # Print the prediction so that the Node.js server can read it
+    print(prediction)
