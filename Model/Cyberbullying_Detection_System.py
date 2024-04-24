@@ -47,7 +47,7 @@ lemmatizer = WordNetLemmatizer()
 # In[5]:
 
 
-df = pd.read_csv("/workspaces/COMP710-001-Project-Cyberbullying-detection-System-with-front-end-integration/Dataset/twitter_parsed_dataset.csv")
+df = pd.read_csv("/workspaces/COMP710-001-Project-Cyberbullying-detection-System-with-front-end-integration/Dataset/twitter_merged_parsed_dataset.csv")
 #print(df.head())
 #print(df.isnull().sum())
 # Handle NaN values
