@@ -13,7 +13,7 @@
 •	Internet, Laptop, IDE (Integrated Development Environment)
 - Installation steps
 •	Cloning the repository or download the zip file or the project.
-•	Make sure to change the file path inside python file and the server.
+•	Make sure to change the file path inside python file (Cyberbullying_Detection_System.py) and the server (node.js).
 •	Before installing the dependencies go to the directory where the file ‘requirements.txt’ is and enter the following command ‘pip install -r requirements.txt’, this command will install all the dependencies.
   - Running the system
 •	In the directory where the server file is, enter the following command ‘node node.js’ to start the server. 
