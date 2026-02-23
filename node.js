@@ -11,6 +11,14 @@ app.use(bodyParser.json());
 app.post('/analyze', (req, res) => {
   const { tweet } = req.body;
 
+  if (typeof tweet !== 'string' || tweet.trim().length === 0) {
+    return res.status(400).json({ error: 'Invalid input: tweet must be a non-empty string' });
+  }
+
+  if (tweet.length > 10000) {
+    return res.status(400).json({ error: 'Input too long' });
+  }
+
   const pythonProcess = spawn('python', [
     '/workspaces/COMP710-001-Project-Cyberbullying-detection-System-with-front-end-integration/Model/Cyberbullying_Detection_System.py',
     tweet
