@@ -106,7 +106,9 @@
       .then(response => response.json())
       .then(data => {
         // Display analysis result
-        resultDiv.innerHTML = `<p>${data.result}</p>`;
+        const p = document.createElement('p');
+        p.textContent = data.result;
+        resultDiv.replaceChildren(p);
         loading.style.display = 'none';
       })
       .catch(error => {
