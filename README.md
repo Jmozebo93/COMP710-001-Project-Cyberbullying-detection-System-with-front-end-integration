@@ -14,6 +14,15 @@ This repository contains the software specification and implementation assets fo
 - Uses a Python-based machine learning model to analyze the text.
 - Returns a prediction such as a cyberbullying category or a non-cyberbullying result.
 
+## Model Used
+The classification model used in this project is **RandomForestClassifier**.
+
+### Model Pipeline
+- **Preprocessing**: Text is cleaned by converting it to lowercase, removing URLs, HTML tags, special characters, digits, and stopwords.
+- **Feature Extraction**: The cleaned text is converted into numerical features using **TF-IDF**.
+- **Classifier**: A **RandomForestClassifier** with `n_estimators=100` and `random_state=42` is trained on the extracted features.
+- **Prediction Output**: The model predicts labels such as `racism`, `sexism`, or `none`.
+
 ## Installation
 ### Prerequisites
 - Internet connection
